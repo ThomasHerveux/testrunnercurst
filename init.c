@@ -7,13 +7,21 @@
 
 #include "my.h"
 
-void initallsf(allsf_t *allsf)
+void initclock(allsf_t *allsf)
 {
     allsf->clock = sfClock_create();
     allsf->clock2 = sfClock_create();
     allsf->clock3 = sfClock_create();
     allsf->clock4 = sfClock_create();
     allsf->clock5 = sfClock_create();
+    allsf->clock6 = sfClock_create();
+    allsf->clock7 = sfClock_create();
+    allsf->clock8 = sfClock_create();
+}
+
+void initallsf(allsf_t *allsf)
+{
+    initclock(allsf);
     allsf->back = 0;
     allsf->skip = 0;
     allsf->seconds = 0;
@@ -22,7 +30,17 @@ void initallsf(allsf_t *allsf)
     allsf->death = 0;
     allsf->vol = 70;
     allsf->point = 0;
+    allsf->dis = 0;
+    allsf->savescore = 0;
+    allsf->counter = 0;
+    allsf->i = 0;
+    allsf->help = 0;
+    allsf->win = 0;
+    allsf->worm = 0;
+    allsf->drake = 0;
+    allsf->more = 0;
 }
+
 void initmain(allsf_t *allsf)
 {
     allsf->mode = (sfVideoMode) {1920, 1080, 32};
@@ -31,5 +49,5 @@ void initmain(allsf_t *allsf)
     initallsf(allsf);
     createsprite(allsf);
     createtext(allsf);
-    music(allsf);
+    createsound(allsf);
 }

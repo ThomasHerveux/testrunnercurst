@@ -63,50 +63,32 @@ void move_rect(allsf_t *allsf)
     }
 }
 
-void move_rect2(allsf_t *allsf)
+void killperso(allsf_t *allsf)
 {
-    allsf->time2 = sfClock_getElapsedTime(allsf->clock2);
-    allsf->seconds = allsf->time2.microseconds / 1000000.0;
+    if ((allsf->buf[1][2]->pos.x - 100 >= allsf->buf[1][1]->pos.x
+    && allsf->buf[1][2]->pos.x - 100 <= allsf->buf[1][1]->pos.x + 160)
+    && (allsf->buf[1][2]->pos.y + 100 >= allsf->buf[1][1]->pos.y
+    && allsf->buf[1][2]->pos.y + 100 <= allsf->buf[1][1]->pos.y + 288)) {
+        sfSound_stop(allsf->storage[0][0]->sound);
+        sfSound_play(allsf->storage[0][2]->sound);
+        allsf->death = 1;
+    }
+    if ((allsf->buf[1][5]->pos.x - 100 >= allsf->buf[1][1]->pos.x
+    && allsf->buf[1][5]->pos.x - 100 <= allsf->buf[1][1]->pos.x + 160)
+    && (allsf->buf[1][5]->pos.y + 100 >= allsf->buf[1][1]->pos.y
+    && allsf->buf[1][5]->pos.y + 100 <= allsf->buf[1][1]->pos.y + 288)) {
+        sfSound_stop(allsf->storage[0][0]->sound);
+        sfSound_play(allsf->storage[0][2]->sound);
+        allsf->death = 1;
+    }
+}
+
+void move_rect6(allsf_t *allsf)
+{
+    allsf->time7 = sfClock_getElapsedTime(allsf->clock7);
+    allsf->seconds = allsf->time7.microseconds / 1000000.0;
     if (allsf->seconds > 0.05) {
-        allsf->buf[1][1]->rect.left -= 288;
-        allsf->buf[1][2]->rect.left += 300;
-        allsf->buf[1][2]->pos.x -= 50;
-        if (allsf->buf[1][2]->pos.x <= -320)
-            allsf->buf[1][2]->pos.x = 1920;
-        if (allsf->buf[1][1]->rect.left <= 2880)
-            allsf->buf[1][1]->rect.left = 6336 - 288;
-        if (allsf->buf[1][2]->rect.left >= 3000)
-            allsf->buf[1][2]->rect.left = 0;
-        sfClock_restart(allsf->clock2);
-    }
-}
-
-void move_rect3(allsf_t *allsf)
-{
-    allsf->time5 = sfClock_getElapsedTime(allsf->clock5);
-    allsf->seconds = allsf->time5.microseconds / 1000000.0;
-    if (allsf->seconds > 0.08) {
-        allsf->buf[1][4]->rect.left -= 288;
-        if (allsf->buf[1][4]->rect.left <= 2880 + (288 * 5))
-            allsf->buf[1][4]->rect.left = 6336 - 288;
-        sfClock_restart(allsf->clock5);
-    }
-}
-
-void death(allsf_t *allsf)
-{
-    allsf->time4 = sfClock_getElapsedTime(allsf->clock4);
-    allsf->seconds = allsf->time4.microseconds / 1000000.0;
-    if (allsf->seconds > 0.1) {
-        if (allsf->skip >= 20) {
-            allsf->death = 0;
-            allsf->back = 0;
-            allsf->skip = 0;
-        }
-        allsf->skip++;
-        allsf->buf[1][3]->rect.left -= 288;
-        if (allsf->buf[1][3]->rect.left <= 0)
-            allsf->buf[1][3]->rect.left = 6336 - 288;
-        sfClock_restart(allsf->clock4);
+        allsf->buf[1][5]->pos.x -= 50;
+        sfClock_restart(allsf->clock7);
     }
 }

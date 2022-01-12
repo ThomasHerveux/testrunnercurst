@@ -20,5 +20,17 @@ void descri(void)
     "   Good luck to survive!\n\n"
     "UTILISATION:\n\n"
     "   ./my_runner or ./my_runner 'map' "
-    "if you want to play with a custom map \n\n", 450);
+    "if you want to play with a custom map \n\n"
+    "INFORMATION:\n\n"
+    "    To create a map :\n"
+    "    write 'e' for enemies, "
+    "'v' to close the map and 'x' for the ground in a file in '.txt'.\n"
+    "    The file must contain 3 lines, not more and not less.\n\n"
+    , 637);
+}
+
+void help(void)
+{
+    write(1,"\nError argument, retry with "
+    "'./my_runner -h' for more information\n\n", 68);
 }
